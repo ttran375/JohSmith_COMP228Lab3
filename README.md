@@ -85,4 +85,4 @@ the user for a mortgage type and all relevant information for that
 mortgage. Store the created Mortgage objects in the array. When data
 entry is complete, display all mortgages.
 
-> (4 marks)
+(4 marks)
