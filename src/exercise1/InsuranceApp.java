@@ -76,7 +76,7 @@ public class InsuranceApp {
         System.out.print("Enter Life Insurance type: ");
         String lifeType = scanner.nextLine();
         System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = scanner.nextDouble();
+        double lifeCost = getPositiveRationalInput("Enter monthly cost for Life Insurance: ");
 
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
@@ -87,6 +87,7 @@ public class InsuranceApp {
 
     private static double getPositiveRationalInput(String prompt) {
         Scanner scanner = new Scanner(System.in);
+        scanner.close();
         double input;
 
         do {
