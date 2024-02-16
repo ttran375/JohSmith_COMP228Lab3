@@ -66,7 +66,7 @@ public class InsuranceApp {
         System.out.print("Enter Health Insurance type: ");
         String healthType = scanner.nextLine();
         System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = getPositiveRationalInput("Enter monthly cost for Health Insurance: ");
+        double healthCost = getPositiveDoubleInput("Enter monthly cost for Health Insurance: ");
         scanner.nextLine();
 
         Health healthInsurance = new Health(healthType);
@@ -76,7 +76,7 @@ public class InsuranceApp {
         System.out.print("Enter Life Insurance type: ");
         String lifeType = scanner.nextLine();
         System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = scanner.nextDouble();
+        double lifeCost = getPositiveDoubleInput("Enter monthly cost for Life Insurance: ");
 
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
@@ -85,25 +85,28 @@ public class InsuranceApp {
         displayInsuranceInfo(insurances);
     }
 
-    private static double getPositiveRationalInput(String prompt) {
+    private static double getPositiveDoubleInput(String prompt) {
+        double value;
         Scanner scanner = new Scanner(System.in);
-        double input;
+        scanner.close();
 
-        do {
+        while (true) {
             System.out.print(prompt);
-            while (!scanner.hasNextDouble()) {
-                System.out.println("Invalid input. Please enter a positive rational number.");
-                scanner.next(); // Consume the invalid input
+            try {
+                value = Double.parseDouble(scanner.nextLine());
+
+                // Check if the entered value is positive
+                if (value > 0) {
+                    break;
+                } else {
+                    System.out.println("Please enter a positive number.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
             }
+        }
 
-            input = scanner.nextDouble();
-
-            if (input <= 0) {
-                System.out.println("Invalid input. Please enter a positive rational number.");
-            }
-        } while (input <= 0);
-
-        return input;
+        return value;
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
