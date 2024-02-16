@@ -1,10 +1,11 @@
+
 package exercise1;
 
 import java.util.Scanner;
 
 abstract class Insurance {
     private String type;
-    public double monthlyCost;
+    double monthlyCost;
 
     public Insurance(String type) {
         this.type = type;
@@ -61,12 +62,13 @@ public class InsuranceApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.close();
+
         Insurance[] insurances = new Insurance[2];
 
         System.out.print("Enter Health Insurance type: ");
         String healthType = scanner.nextLine();
         System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = getPositiveNumber("Enter monthly cost for Health Insurance: ");
+        double healthCost = scanner.nextDouble();
         scanner.nextLine();
 
         Health healthInsurance = new Health(healthType);
@@ -76,36 +78,13 @@ public class InsuranceApp {
         System.out.print("Enter Life Insurance type: ");
         String lifeType = scanner.nextLine();
         System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = getPositiveNumber("Enter monthly cost for Life Insurance: ");
+        double lifeCost = scanner.nextDouble();
 
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
         insurances[1] = lifeInsurance;
 
         displayInsuranceInfo(insurances);
-    }
-
-    private static double getPositiveNumber(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-        double number;
-
-        do {
-            System.out.print(prompt);
-            while (!scanner.hasNextDouble()) {
-                System.out.println("Please enter a valid number.");
-                System.out.print(prompt);
-                scanner.next(); // Consume the invalid input
-            }
-
-            number = scanner.nextDouble();
-
-            if (number <= 0) {
-                System.out.println("Please enter a positive number.");
-            }
-
-        } while (number <= 0);
-
-        return number;
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
