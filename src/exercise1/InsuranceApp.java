@@ -66,7 +66,7 @@ public class InsuranceApp {
         System.out.print("Enter Health Insurance type: ");
         String healthType = scanner.nextLine();
         System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = scanner.nextDouble();
+        double healthCost = getPositiveRationalInput("Enter monthly cost for Health Insurance: ");
         scanner.nextLine();
 
         Health healthInsurance = new Health(healthType);
@@ -83,6 +83,27 @@ public class InsuranceApp {
         insurances[1] = lifeInsurance;
 
         displayInsuranceInfo(insurances);
+    }
+
+    private static double getPositiveRationalInput(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        double input;
+
+        do {
+            System.out.print(prompt);
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Invalid input. Please enter a positive rational number.");
+                scanner.next(); // Consume the invalid input
+            }
+
+            input = scanner.nextDouble();
+
+            if (input <= 0) {
+                System.out.println("Invalid input. Please enter a positive rational number.");
+            }
+        } while (input <= 0);
+
+        return input;
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
