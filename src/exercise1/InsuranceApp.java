@@ -66,7 +66,7 @@ public class InsuranceApp {
         System.out.print("Enter Health Insurance type: ");
         String healthType = scanner.nextLine();
         System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = getPositiveDoubleInput("Enter monthly cost for Health Insurance: ");
+        double healthCost = getPositiveNumber("Enter monthly cost for Health Insurance: ");
         scanner.nextLine();
 
         Health healthInsurance = new Health(healthType);
@@ -76,7 +76,7 @@ public class InsuranceApp {
         System.out.print("Enter Life Insurance type: ");
         String lifeType = scanner.nextLine();
         System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = getPositiveDoubleInput("Enter monthly cost for Life Insurance: ");
+        double lifeCost = getPositiveNumber("Enter monthly cost for Life Insurance: ");
 
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
@@ -85,28 +85,27 @@ public class InsuranceApp {
         displayInsuranceInfo(insurances);
     }
 
-    private static double getPositiveDoubleInput(String prompt) {
-        double value;
+    private static double getPositiveNumber(String prompt) {
         Scanner scanner = new Scanner(System.in);
-        scanner.close();
+        double number;
 
-        while (true) {
+        do {
             System.out.print(prompt);
-            try {
-                value = Double.parseDouble(scanner.nextLine());
-
-                // Check if the entered value is positive
-                if (value > 0) {
-                    break;
-                } else {
-                    System.out.println("Please enter a positive number.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Please enter a valid number.");
+                System.out.print(prompt);
+                scanner.next(); // Consume the invalid input
             }
-        }
 
-        return value;
+            number = scanner.nextDouble();
+
+            if (number <= 0) {
+                System.out.println("Please enter a positive number.");
+            }
+
+        } while (number <= 0);
+
+        return number;
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
