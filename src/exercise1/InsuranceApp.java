@@ -1,4 +1,3 @@
-
 package exercise1;
 
 import java.util.Scanner;
@@ -31,7 +30,6 @@ class Health extends Insurance {
 
     @Override
     public void setInsuranceCost(double cost) {
-
         super.monthlyCost = cost;
     }
 
@@ -48,7 +46,6 @@ class Life extends Insurance {
 
     @Override
     public void setInsuranceCost(double cost) {
-
         super.monthlyCost = cost;
     }
 
@@ -61,30 +58,42 @@ class Life extends Insurance {
 public class InsuranceApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.close();
 
         Insurance[] insurances = new Insurance[2];
 
+        // Input for Health Insurance
         System.out.print("Enter Health Insurance type: ");
         String healthType = scanner.nextLine();
-        System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = scanner.nextDouble();
-        scanner.nextLine();
-
+        double healthCost = getValidMonthlyCost(scanner);
         Health healthInsurance = new Health(healthType);
         healthInsurance.setInsuranceCost(healthCost);
         insurances[0] = healthInsurance;
 
+        // Input for Life Insurance
         System.out.print("Enter Life Insurance type: ");
         String lifeType = scanner.nextLine();
-        System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = scanner.nextDouble();
-
+        double lifeCost = getValidMonthlyCost(scanner);
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
         insurances[1] = lifeInsurance;
 
+        scanner.close();
+
         displayInsuranceInfo(insurances);
+    }
+
+    private static double getValidMonthlyCost(Scanner scanner) {
+        double cost;
+        do {
+            System.out.print("Enter monthly cost: ");
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next(); // Consume invalid input
+            }
+            cost = scanner.nextDouble();
+        } while (cost <= 0);
+
+        return cost;
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
