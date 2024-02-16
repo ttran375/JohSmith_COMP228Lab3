@@ -60,7 +60,7 @@ class Life extends Insurance {
 public class InsuranceApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        scanner.close();
         Insurance[] insurances = new Insurance[2];
 
         System.out.print("Enter Health Insurance type: ");
