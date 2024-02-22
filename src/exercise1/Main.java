@@ -5,29 +5,36 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Insurance[] insurances = new Insurance[2];
 
-        System.out.print("Enter Health Insurance type: ");
-        String healthType = scanner.nextLine();
-        System.out.print("Enter monthly cost for Health Insurance: ");
-        double healthCost = scanner.nextDouble();
-        scanner.nextLine();
+        System.out.print("Enter the number of insurances: ");
+        int numInsurances = scanner.nextInt();
+        scanner.nextLine(); // consume newline
 
-        Health healthInsurance = new Health(healthType);
-        healthInsurance.setInsuranceCost(healthCost);
-        insurances[0] = healthInsurance;
+        Insurance[] insurances = new Insurance[numInsurances];
 
-        System.out.print("Enter Life Insurance type: ");
-        String lifeType = scanner.nextLine();
-        System.out.print("Enter monthly cost for Life Insurance: ");
-        double lifeCost = scanner.nextDouble();
-        scanner.close();
+        for (int i = 0; i < numInsurances; i++) {
+            System.out.print("Enter type of insurance (Health/Life): ");
+            String type = scanner.nextLine();
 
-        Life lifeInsurance = new Life(lifeType);
-        lifeInsurance.setInsuranceCost(lifeCost);
-        insurances[1] = lifeInsurance;
+            System.out.print("Enter monthly fee: ");
+            double monthlyFee = scanner.nextDouble();
+            scanner.nextLine(); // consume newline
 
+            if ("Health".equalsIgnoreCase(type)) {
+                insurances[i] = new Health(type);
+            } else if ("Life".equalsIgnoreCase(type)) {
+                insurances[i] = new Life(type);
+            }
+
+            if (insurances[i] != null) {
+                insurances[i].setInsuranceCost(monthlyFee);
+            }
+        }
+
+        System.out.println("\nInsurance Information:");
         displayInsuranceInfo(insurances);
+
+        scanner.close();
     }
 
     private static void displayInsuranceInfo(Insurance[] insurances) {
@@ -65,7 +72,6 @@ class Health extends Insurance {
 
     @Override
     public void setInsuranceCost(double cost) {
-
         super.monthlyCost = cost;
     }
 
@@ -82,7 +88,6 @@ class Life extends Insurance {
 
     @Override
     public void setInsuranceCost(double cost) {
-
         super.monthlyCost = cost;
     }
 
