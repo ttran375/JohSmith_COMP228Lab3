@@ -35,3 +35,40 @@ public class Main {
         scanner.close();
     }
 }
+
+abstract class GameTester {
+    protected String name;
+    protected boolean isFullTime;
+
+    public GameTester(String name, boolean isFullTime) {
+        this.name = name;
+        this.isFullTime = isFullTime;
+    }
+
+    public abstract double calculateSalary();
+}
+
+class FullTimeGameTester extends GameTester {
+    public FullTimeGameTester(String name) {
+        super(name, true);
+    }
+
+    @Override
+    public double calculateSalary() {
+        return 3000; // base salary
+    }
+}
+
+class PartTimeGameTester extends GameTester {
+    public int hoursWorked;
+
+    public PartTimeGameTester(String name, int hoursWorked) {
+        super(name, false);
+        this.hoursWorked = hoursWorked;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return hoursWorked * 20; // $20 per hour
+    }
+}
