@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class InsuranceApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.close();
-
         Insurance[] insurances = new Insurance[2];
 
         System.out.print("Enter Health Insurance type: ");
@@ -23,6 +21,7 @@ public class InsuranceApp {
         String lifeType = scanner.nextLine();
         System.out.print("Enter monthly cost for Life Insurance: ");
         double lifeCost = scanner.nextDouble();
+        scanner.close();
 
         Life lifeInsurance = new Life(lifeType);
         lifeInsurance.setInsuranceCost(lifeCost);
