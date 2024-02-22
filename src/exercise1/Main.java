@@ -8,7 +8,7 @@ public class Main {
 
         System.out.print("Enter the number of insurances: ");
         int numInsurances = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine();
 
         Insurance[] insurances = new Insurance[numInsurances];
 
@@ -18,7 +18,7 @@ public class Main {
 
             System.out.print("Enter monthly fee: ");
             double monthlyFee = scanner.nextDouble();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine();
 
             if ("Health".equalsIgnoreCase(type)) {
                 insurances[i] = new Health(type);

@@ -13,14 +13,14 @@ public class Main {
 
         if (choice == 1) {
             System.out.print("Enter full-time tester name: ");
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             String name = scanner.nextLine();
             FullTimeGameTester fullTimeTester = new FullTimeGameTester(name);
             System.out.println("Full-Time Tester: " + fullTimeTester.name);
             System.out.println("Salary: $" + fullTimeTester.calculateSalary());
         } else if (choice == 2) {
             System.out.print("Enter part-time tester name: ");
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             String name = scanner.nextLine();
             System.out.print("Enter number of hours worked: ");
             int hoursWorked = scanner.nextInt();
@@ -55,7 +55,7 @@ class FullTimeGameTester extends GameTester {
 
     @Override
     public double calculateSalary() {
-        return 3000; // base salary
+        return 3000;
     }
 }
 
@@ -69,6 +69,6 @@ class PartTimeGameTester extends GameTester {
 
     @Override
     public double calculateSalary() {
-        return hoursWorked * 20; // $20 per hour
+        return hoursWorked * 20;
     }
 }
