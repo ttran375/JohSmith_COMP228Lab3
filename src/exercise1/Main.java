@@ -36,3 +36,58 @@ public class Main {
         }
     }
 }
+
+abstract class Insurance {
+    private String type;
+    double monthlyCost;
+
+    public Insurance(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public double getMonthlyCost() {
+        return monthlyCost;
+    }
+
+    public abstract void setInsuranceCost(double cost);
+
+    public abstract void displayInfo();
+}
+
+class Health extends Insurance {
+    public Health(String type) {
+        super(type);
+    }
+
+    @Override
+    public void setInsuranceCost(double cost) {
+
+        super.monthlyCost = cost;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Health Insurance: Type - " + getType() + ", Monthly Cost - $" + getMonthlyCost());
+    }
+}
+
+class Life extends Insurance {
+    public Life(String type) {
+        super(type);
+    }
+
+    @Override
+    public void setInsuranceCost(double cost) {
+
+        super.monthlyCost = cost;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Life Insurance: Type - " + getType() + ", Monthly Cost - $" + getMonthlyCost());
+    }
+}
