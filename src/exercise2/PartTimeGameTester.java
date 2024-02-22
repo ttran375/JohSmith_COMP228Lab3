@@ -1,7 +1,7 @@
 package exercise2;
 
 class PartTimeGameTester extends GameTester {
-    private int hoursWorked;
+    public int hoursWorked;
 
     public PartTimeGameTester(String name, int hoursWorked) {
         super(name, false);
