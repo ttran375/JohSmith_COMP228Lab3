@@ -2,7 +2,7 @@ package exercise1;
 
 import java.util.Scanner;
 
-public class InsuranceApp {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Insurance[] insurances = new Insurance[2];
