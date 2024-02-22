@@ -1,45 +1,21 @@
 package exercise3;
 
 abstract class Mortgage implements MortgageConstants {
-    private int mortgageNumber;
-    private String customerName;
-    private double mortgageAmount;
+    protected int mortgageNumber;
+    protected String customerName;
+    protected double mortgageAmount;
     protected double interestRate;
-    private int term;
+    protected int term;
 
-    public Mortgage(int mortgageNumber, String customerName, double mortgageAmount, int term) {
+    public Mortgage(int mortgageNumber, String customerName, double mortgageAmount, double interestRate, int term) {
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
-
-        // Ensure mortgage amount does not exceed the maximum limit
-        if (mortgageAmount > MAXIMUM_AMOUNT) {
-            this.mortgageAmount = MAXIMUM_AMOUNT;
-        } else {
-            this.mortgageAmount = mortgageAmount;
-        }
-
-        // Set the term to a valid value defined in MortgageConstants
-        if (term == SHORT_TERM || term == MEDIUM_TERM || term == LONG_TERM) {
-            this.term = term;
-        } else {
-            this.term = SHORT_TERM; // Default to short-term for undefined terms
-        }
+        this.mortgageAmount = Math.min(mortgageAmount, MAX_MORTGAGE_AMOUNT);
+        this.interestRate = interestRate;
+        this.term = term == SHORT_TERM || term == MEDIUM_TERM || term == LONG_TERM ? term : SHORT_TERM;
     }
 
-    public abstract void setInterestRate(double rate);
-
-    public double calculateTotalAmountOwed() {
-        double interest = mortgageAmount * interestRate * term;
-        return mortgageAmount + interest;
-    }
-
-    public void getMortgageInfo() {
-        System.out.println("Mortgage Number: " + mortgageNumber);
-        System.out.println("Customer Name: " + customerName);
-        System.out.println("Mortgage Amount: $" + mortgageAmount);
-        System.out.println("Interest Rate: " + interestRate * 100 + "%");
-        System.out.println("Term: " + term + " years");
-        System.out.println("Total Amount Owed: $" + calculateTotalAmountOwed());
+    public String getMortgageInfo() {
+        return "Mortgage Number: " + mortgageNumber + "\nCustomer Name: " + customerName + "\nMortgage Amount: " + mortgageAmount + "\nInterest Rate: " + interestRate + "\nTerm: " + term;
     }
 }
-
