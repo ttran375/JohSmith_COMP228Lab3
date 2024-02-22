@@ -2,7 +2,7 @@ package exercise3;
 
 import java.util.Scanner;
 
-public class Main {
+public class ProcessMortgage {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Mortgage[] mortgages = new Mortgage[3];
@@ -55,5 +55,45 @@ public class Main {
         }
 
         scanner.close();
+    }
+}
+
+interface MortgageConstants {
+    int SHORT_TERM = 1;
+    int MEDIUM_TERM = 3;
+    int LONG_TERM = 5;
+    String BANK_NAME = "CityToronto Bank";
+    double MAX_MORTGAGE_AMOUNT = 300000;
+}
+
+abstract class Mortgage implements MortgageConstants {
+    protected int mortgageNumber;
+    protected String customerName;
+    protected double mortgageAmount;
+    protected double interestRate;
+    protected int term;
+
+    public Mortgage(int mortgageNumber, String customerName, double mortgageAmount, double interestRate, int term) {
+        this.mortgageNumber = mortgageNumber;
+        this.customerName = customerName;
+        this.mortgageAmount = Math.min(mortgageAmount, MAX_MORTGAGE_AMOUNT);
+        this.interestRate = interestRate;
+        this.term = term == SHORT_TERM || term == MEDIUM_TERM || term == LONG_TERM ? term : SHORT_TERM;
+    }
+
+    public String getMortgageInfo() {
+        return "Mortgage Number: " + mortgageNumber + "\nCustomer Name: " + customerName + "\nMortgage Amount: " + mortgageAmount + "\nInterest Rate: " + interestRate + "\nTerm: " + term;
+    }
+}
+
+class BusinessMortgage extends Mortgage {
+    public BusinessMortgage(int mortgageNumber, String customerName, double mortgageAmount, int term, double currentPrimeRate) {
+        super(mortgageNumber, customerName, mortgageAmount, currentPrimeRate + 0.01, term);
+    }
+}
+
+class PersonalMortgage extends Mortgage {
+    public PersonalMortgage(int mortgageNumber, String customerName, double mortgageAmount, int term, double currentPrimeRate) {
+        super(mortgageNumber, customerName, mortgageAmount, currentPrimeRate + 0.02, term);
     }
 }
