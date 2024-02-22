@@ -31,7 +31,7 @@ public class Main {
             }
         }
 
-        System.out.println("\nInsurance Information:");
+        System.out.println("Insurance Information:");
         displayInsuranceInfo(insurances);
 
         scanner.close();
