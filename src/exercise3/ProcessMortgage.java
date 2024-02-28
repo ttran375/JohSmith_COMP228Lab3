@@ -6,8 +6,8 @@ public class ProcessMortgage {
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        final int NUMBER_OF_MORTGAGES = 3;
-        Mortgage[] mortgages = new Mortgage[NUMBER_OF_MORTGAGES];
+        final int numberOfMortgages = 3;
+        Mortgage[] mortgages = new Mortgage[numberOfMortgages];
         double currentInterestRate;
 
         // Prompt user for current interest rate
