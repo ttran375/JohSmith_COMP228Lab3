@@ -10,7 +10,7 @@
     "files.insertFinalNewline": true,
     "editor.trimAutoWhitespace": true,
     "[java]": {
-        "editor.defaultFormatter": "ilkka.google-java-format",
+        "editor.defaultFormatter": "redhat.java",
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

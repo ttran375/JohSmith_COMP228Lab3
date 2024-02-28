@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class ProcessMortgage {
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Mortgage[] mortgages = new Mortgage[3];
+
+        final int NUMBER_OF_MORTGAGES = 3;
+        Mortgage[] mortgages = new Mortgage[NUMBER_OF_MORTGAGES];
         double currentInterestRate;
 
         // Prompt user for current interest rate
@@ -20,7 +22,8 @@ public class ProcessMortgage {
             System.out.println("\nEnter details for Mortgage " + (i + 1) + ":");
 
             // Prompt user for mortgage type
-            System.out.print("Enter mortgage type (1 for Business, 2 for Personal): ");
+            System.out.print(
+                    "Enter mortgage type (1 for Business, 2 for Personal): ");
             int mortgageType = scanner.nextInt();
 
             // Consume newline character after reading int
@@ -33,16 +36,28 @@ public class ProcessMortgage {
             System.out.print("Enter mortgage amount: ");
             double mortgageAmount = scanner.nextDouble();
 
-            System.out.print("Enter term (1 for short term, 3 for medium term, 5 for long term): ");
+            System.out.print(
+    "Enter term (1 for short term, 3 for medium term, 5 for long term): ");
             int term = scanner.nextInt();
 
             // Create mortgage object based on user input
             if (mortgageType == 1) {
-                mortgages[i] = new BusinessMortgage(i + 1, customerName, mortgageAmount, term, currentInterestRate);
+                mortgages[i] = new BusinessMortgage(
+                        i + 1,
+                        customerName,
+                        mortgageAmount,
+                        term,
+                        currentInterestRate);
             } else if (mortgageType == 2) {
-                mortgages[i] = new PersonalMortgage(i + 1, customerName, mortgageAmount, term, currentInterestRate);
+                mortgages[i] = new PersonalMortgage(
+                        i + 1,
+                        customerName,
+                        mortgageAmount,
+                        term,
+                        currentInterestRate);
             } else {
-                System.out.println("Invalid mortgage type. Skipping this mortgage.");
+                System.out.println(
+                        "Invalid mortgage type. Skipping this mortgage.");
                 continue;
             }
         }
@@ -73,27 +88,63 @@ abstract class Mortgage implements MortgageConstants {
     protected double interestRate;
     protected int term;
 
-    public Mortgage(int mortgageNumber, String customerName, double mortgageAmount, double interestRate, int term) {
+    public Mortgage(
+            int mortgageNumber,
+            String customerName,
+            double mortgageAmount,
+            double interestRate,
+            int term) {
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
         this.mortgageAmount = Math.min(mortgageAmount, MAX_MORTGAGE_AMOUNT);
         this.interestRate = interestRate;
-        this.term = term == SHORT_TERM || term == MEDIUM_TERM || term == LONG_TERM ? term : SHORT_TERM;
+        this.term = term == SHORT_TERM
+                || term == MEDIUM_TERM
+                || term == LONG_TERM
+                        ? term
+                        : SHORT_TERM;
     }
 
     public String getMortgageInfo() {
-        return "Mortgage Number: " + mortgageNumber + "\nCustomer Name: " + customerName + "\nMortgage Amount: " + mortgageAmount + "\nInterest Rate: " + interestRate + "\nTerm: " + term;
+        return "Mortgage Number: "
+                + mortgageNumber
+                + "\nCustomer Name: "
+                + customerName
+                + "\nMortgage Amount: "
+                + mortgageAmount
+                + "\nInterest Rate: "
+                + interestRate
+                + "\nTerm: "
+                + term;
     }
 }
 
 class BusinessMortgage extends Mortgage {
-    public BusinessMortgage(int mortgageNumber, String customerName, double mortgageAmount, int term, double currentPrimeRate) {
-        super(mortgageNumber, customerName, mortgageAmount, currentPrimeRate + 0.01, term);
+    public BusinessMortgage(
+            int mortgageNumber,
+            String customerName,
+            double mortgageAmount, int term,
+            double currentPrimeRate) {
+        super(mortgageNumber,
+                customerName,
+                mortgageAmount,
+                currentPrimeRate + 0.01,
+                term);
     }
 }
 
 class PersonalMortgage extends Mortgage {
-    public PersonalMortgage(int mortgageNumber, String customerName, double mortgageAmount, int term, double currentPrimeRate) {
-        super(mortgageNumber, customerName, mortgageAmount, currentPrimeRate + 0.02, term);
+    public PersonalMortgage(
+            int mortgageNumber,
+            String customerName,
+            double mortgageAmount,
+            int term,
+            double currentPrimeRate) {
+        super(
+                mortgageNumber,
+                customerName,
+                mortgageAmount,
+                currentPrimeRate + 0.02,
+                term);
     }
 }
