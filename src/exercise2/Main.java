@@ -3,7 +3,7 @@ package exercise2;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose game tester type:");
@@ -24,7 +24,8 @@ public class Main {
             String name = scanner.nextLine();
             System.out.print("Enter number of hours worked: ");
             int hoursWorked = scanner.nextInt();
-            PartTimeGameTester partTimeTester = new PartTimeGameTester(name, hoursWorked);
+            PartTimeGameTester partTimeTester = new PartTimeGameTester(name,
+                    hoursWorked);
             System.out.println("Part-Time Tester: " + partTimeTester.name);
             System.out.println("Hours Worked: " + partTimeTester.hoursWorked);
             System.out.println("Salary: $" + partTimeTester.calculateSalary());

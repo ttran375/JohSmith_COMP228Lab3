@@ -3,10 +3,6 @@ package exercise1;
 import java.util.Scanner;
 
 public final class Main {
-    private Main() {
-        // Prevent instantiation
-    }
-
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -52,7 +48,7 @@ abstract class Insurance {
     private String type;
     private double monthlyCost;
 
-    public Insurance(final String insuranceType) {
+    Insurance(final String insuranceType) {
         this.type = insuranceType;
     }
 
@@ -64,17 +60,17 @@ abstract class Insurance {
         return monthlyCost;
     }
 
-    public void setMonthlyCost(double cost) {
+    public void setMonthlyCost(final double cost) {
         this.monthlyCost = cost;
     }
 
-    public abstract void setInsuranceCost(final double cost);
+    abstract void setInsuranceCost(double cost);
 
-    public abstract void displayInfo();
+    abstract void displayInfo();
 }
 
 class Health extends Insurance {
-    public Health(final String type) {
+    Health(final String type) {
         super(type);
     }
 
@@ -85,13 +81,13 @@ class Health extends Insurance {
 
     @Override
     public void displayInfo() {
-        System.out.println("Health Insurance: Type - " + getType() 
-            + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println("Health Insurance: Type - " + getType()
+                + ", Monthly Cost - $" + getMonthlyCost());
     }
 }
 
 class Life extends Insurance {
-    public Life(final String type) {
+    Life(final String type) {
         super(type);
     }
 
@@ -102,7 +98,7 @@ class Life extends Insurance {
 
     @Override
     public void displayInfo() {
-        System.out.println("Life Insurance: Type - " + getType() 
-            + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println("Life Insurance: Type - " + getType()
+                + ", Monthly Cost - $" + getMonthlyCost());
     }
 }
