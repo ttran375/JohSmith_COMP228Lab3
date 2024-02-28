@@ -1,3 +1,18 @@
 {
-    "gitdoc.enabled": true
+    "gitdoc.enabled": true,
+    "git.autofetch": true,
+    "gitdoc.autoCommitDelay": 60000,
+    "gitdoc.commitMessageFormat": "ccc, LLL d, y, h:mm a '+00:00'",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.java",
+    "files.insertFinalNewline": true,
+    "editor.trimAutoWhitespace": true,
+    "[java]": {
+        "editor.defaultFormatter": "ilkka.google-java-format",
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }
