@@ -10,26 +10,20 @@ public class ProcessMortgage {
         Mortgage[] mortgages = new Mortgage[numberOfMortgages];
         double currentInterestRate;
 
-        // Prompt user for current interest rate
         System.out.print("Enter the current interest rate: ");
         currentInterestRate = scanner.nextDouble();
 
-        // Consume newline character after reading double
         scanner.nextLine();
 
-        // Loop to prompt user for mortgage information
         for (int i = 0; i < mortgages.length; i++) {
             System.out.println("\nEnter details for Mortgage " + (i + 1) + ":");
 
-            // Prompt user for mortgage type
             System.out.print(
                     "Enter mortgage type (1 for Business, 2 for Personal): ");
             int mortgageType = scanner.nextInt();
 
-            // Consume newline character after reading int
             scanner.nextLine();
 
-            // Prompt user for common mortgage information
             System.out.print("Enter customer name: ");
             String customerName = scanner.nextLine();
 
@@ -40,7 +34,6 @@ public class ProcessMortgage {
     "Enter term (1 for short term, 3 for medium term, 5 for long term): ");
             int term = scanner.nextInt();
 
-            // Create mortgage object based on user input
             if (mortgageType == 1) {
                 mortgages[i] = new BusinessMortgage(
                         i + 1,
@@ -62,7 +55,6 @@ public class ProcessMortgage {
             }
         }
 
-        // Display all mortgages
         System.out.println("\n--- All Mortgages ---");
         for (Mortgage mortgage : mortgages) {
             System.out.println(mortgage.getMortgageInfo());
@@ -82,18 +74,18 @@ interface MortgageConstants {
 }
 
 abstract class Mortgage implements MortgageConstants {
-    protected int mortgageNumber;
-    protected String customerName;
-    protected double mortgageAmount;
-    protected double interestRate;
-    protected int term;
+    private int mortgageNumber;
+    private String customerName;
+    private double mortgageAmount;
+    private double interestRate;
+    private int term;
 
-    public Mortgage(
-            int mortgageNumber,
-            String customerName,
-            double mortgageAmount,
-            double interestRate,
-            int term) {
+    Mortgage(
+            final int mortgageNumber,
+            final String customerName,
+            final double mortgageAmount,
+            final double interestRate,
+            final int term) {
         this.mortgageNumber = mortgageNumber;
         this.customerName = customerName;
         this.mortgageAmount = Math.min(mortgageAmount, MAX_MORTGAGE_AMOUNT);
@@ -105,46 +97,71 @@ abstract class Mortgage implements MortgageConstants {
                         : SHORT_TERM;
     }
 
+    int getMortgageNumber() {
+        return mortgageNumber;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public double getMortgageAmount() {
+        return mortgageAmount;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public int getTerm() {
+        return term;
+    }
+
     public String getMortgageInfo() {
         return "Mortgage Number: "
-                + mortgageNumber
+                + getMortgageNumber()
                 + "\nCustomer Name: "
-                + customerName
+                + getCustomerName()
                 + "\nMortgage Amount: "
-                + mortgageAmount
+                + getMortgageAmount()
                 + "\nInterest Rate: "
-                + interestRate
+                + getInterestRate()
                 + "\nTerm: "
-                + term;
+                + getTerm();
     }
 }
 
 class BusinessMortgage extends Mortgage {
-    public BusinessMortgage(
-            int mortgageNumber,
-            String customerName,
-            double mortgageAmount, int term,
-            double currentPrimeRate) {
+    private static final double BUSINESS_RATE_ADDITION = 0.01;
+
+    BusinessMortgage(
+            final int mortgageNumber,
+            final String customerName,
+            final double mortgageAmount,
+            final int term,
+            final double currentPrimeRate) {
         super(mortgageNumber,
                 customerName,
                 mortgageAmount,
-                currentPrimeRate + 0.01,
+                currentPrimeRate + BUSINESS_RATE_ADDITION,
                 term);
     }
 }
 
 class PersonalMortgage extends Mortgage {
-    public PersonalMortgage(
-            int mortgageNumber,
-            String customerName,
-            double mortgageAmount,
-            int term,
-            double currentPrimeRate) {
+    private static final double PERSONAL_RATE_ADDITION = 0.02;
+
+    PersonalMortgage(
+            final int mortgageNumber,
+            final String customerName,
+            final double mortgageAmount,
+            final int term,
+            final double currentPrimeRate) {
         super(
                 mortgageNumber,
                 customerName,
                 mortgageAmount,
-                currentPrimeRate + 0.02,
+                currentPrimeRate + PERSONAL_RATE_ADDITION,
                 term);
     }
 }

@@ -24,12 +24,16 @@ public class Main {
             String name = scanner.nextLine();
             System.out.print("Enter number of hours worked: ");
             int hoursWorked = scanner.nextInt();
-            PartTimeGameTester partTimeTester = new PartTimeGameTester(name,
+            PartTimeGameTester partTimeTester = new PartTimeGameTester(
+                    name,
                     hoursWorked);
             System.out.println("Part-Time Tester: " + partTimeTester.getName());
-            System.out.println("Hours Worked: "
-                    + partTimeTester.getHoursWorked());
-            System.out.println("Salary: $" + partTimeTester.calculateSalary());
+            System.out.println(
+                    "Hours Worked: "
+                            + partTimeTester.getHoursWorked());
+            System.out.println(
+                    "Salary: $"
+                            + partTimeTester.calculateSalary());
         } else {
             System.out.println("Invalid choice");
         }

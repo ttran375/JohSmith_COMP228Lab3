@@ -81,8 +81,11 @@ class Health extends Insurance {
 
     @Override
     public void displayInfo() {
-        System.out.println("Health Insurance: Type - " + getType()
-                + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println(
+                "Health Insurance: Type - "
+                        + getType()
+                        + ", Monthly Cost - $"
+                        + getMonthlyCost());
     }
 }
 
@@ -98,7 +101,10 @@ class Life extends Insurance {
 
     @Override
     public void displayInfo() {
-        System.out.println("Life Insurance: Type - " + getType()
-                + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println(
+                "Life Insurance: Type - "
+                        + getType()
+                        + ", Monthly Cost - $"
+                        + getMonthlyCost());
     }
 }

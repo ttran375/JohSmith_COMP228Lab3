@@ -1,5 +1,10 @@
 # LAB \#3 – Using Inheritance and Polymorphism
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ttran375/comp228-lab3)
+
+[![Style Check](https://github.com/ttran375/comp228-lab3/actions/workflows/main.yml/badge.svg)](https://github.com/ttran375/comp228-lab3/actions/workflows/main.yml)
+
+
 ## Exercise 1
 
 Write a Java application that implements different types of insurance
