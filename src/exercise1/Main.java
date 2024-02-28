@@ -2,8 +2,12 @@ package exercise1;
 
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public final class Main {
+    private Main() {
+        // Prevent instantiation
+    }
+
+    public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the number of insurances: ");
@@ -37,7 +41,7 @@ public class Main {
         scanner.close();
     }
 
-    private static void displayInsuranceInfo(Insurance[] insurances) {
+    private static void displayInsuranceInfo(final Insurance[] insurances) {
         for (Insurance insurance : insurances) {
             insurance.displayInfo();
         }
@@ -46,10 +50,10 @@ public class Main {
 
 abstract class Insurance {
     private String type;
-    double monthlyCost;
+    private double monthlyCost;
 
-    public Insurance(String type) {
-        this.type = type;
+    public Insurance(final String insuranceType) {
+        this.type = insuranceType;
     }
 
     public String getType() {
@@ -60,39 +64,45 @@ abstract class Insurance {
         return monthlyCost;
     }
 
-    public abstract void setInsuranceCost(double cost);
+    public void setMonthlyCost(double cost) {
+        this.monthlyCost = cost;
+    }
+
+    public abstract void setInsuranceCost(final double cost);
 
     public abstract void displayInfo();
 }
 
 class Health extends Insurance {
-    public Health(String type) {
+    public Health(final String type) {
         super(type);
     }
 
     @Override
-    public void setInsuranceCost(double cost) {
-        super.monthlyCost = cost;
+    public void setInsuranceCost(final double cost) {
+        super.setMonthlyCost(cost);
     }
 
     @Override
     public void displayInfo() {
-        System.out.println("Health Insurance: Type - " + getType() + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println("Health Insurance: Type - " + getType() 
+            + ", Monthly Cost - $" + getMonthlyCost());
     }
 }
 
 class Life extends Insurance {
-    public Life(String type) {
+    public Life(final String type) {
         super(type);
     }
 
     @Override
-    public void setInsuranceCost(double cost) {
-        super.monthlyCost = cost;
+    public void setInsuranceCost(final double cost) {
+        super.setMonthlyCost(cost);
     }
 
     @Override
     public void displayInfo() {
-        System.out.println("Life Insurance: Type - " + getType() + ", Monthly Cost - $" + getMonthlyCost());
+        System.out.println("Life Insurance: Type - " + getType() 
+            + ", Monthly Cost - $" + getMonthlyCost());
     }
 }

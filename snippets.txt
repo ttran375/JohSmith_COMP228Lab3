@@ -1,3 +1,1 @@
-docker run -e RUN_LOCAL=true -e VALIDATE_JSON=false -e VALIDATE_EDITORCONFIG=false -e VALIDATE_GOOGLE_JAVA_FORMAT=false -e VALIDATE_JSCPD=fasle -v "$(pwd)":/tmp/lint github/super-linter
 docker run -e RUN_LOCAL=true -e VALIDATE_JAVA=true -v "$(pwd)":/tmp/lint github/super-linter
-docker run -e RUN_LOCAL=true -e VALIDATE_GOOGLE_JAVA_FORMAT=true -v "$(pwd)":/tmp/lint github/super-linter
