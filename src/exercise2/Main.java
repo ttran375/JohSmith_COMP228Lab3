@@ -16,7 +16,7 @@ public class Main {
             scanner.nextLine();
             String name = scanner.nextLine();
             FullTimeGameTester fullTimeTester = new FullTimeGameTester(name);
-            System.out.println("Full-Time Tester: " + fullTimeTester.name);
+            System.out.println("Full-Time Tester: " + fullTimeTester.getName());
             System.out.println("Salary: $" + fullTimeTester.calculateSalary());
         } else if (choice == 2) {
             System.out.print("Enter part-time tester name: ");
@@ -26,8 +26,9 @@ public class Main {
             int hoursWorked = scanner.nextInt();
             PartTimeGameTester partTimeTester = new PartTimeGameTester(name,
                     hoursWorked);
-            System.out.println("Part-Time Tester: " + partTimeTester.name);
-            System.out.println("Hours Worked: " + partTimeTester.hoursWorked);
+            System.out.println("Part-Time Tester: " + partTimeTester.getName());
+            System.out.println("Hours Worked: "
+                    + partTimeTester.getHoursWorked());
             System.out.println("Salary: $" + partTimeTester.calculateSalary());
         } else {
             System.out.println("Invalid choice");
@@ -38,38 +39,57 @@ public class Main {
 }
 
 abstract class GameTester {
-    protected String name;
-    protected boolean isFullTime;
+    private String name;
+    private boolean isFullTime;
 
-    public GameTester(String name, boolean isFullTime) {
+    GameTester(final String name, final boolean isFullTime) {
         this.name = name;
         this.isFullTime = isFullTime;
     }
 
-    public abstract double calculateSalary();
+    public String getName() {
+        return this.name;
+    }
+
+    public boolean getIsFullTime() {
+        return this.isFullTime;
+    }
+
+    public abstract int calculateSalary();
 }
 
 class FullTimeGameTester extends GameTester {
-    public FullTimeGameTester(String name) {
+    private static final int FULL_TIME_SALARY = 3000;
+
+    FullTimeGameTester(final String name) {
         super(name, true);
     }
 
     @Override
-    public double calculateSalary() {
-        return 3000;
+    public int calculateSalary() {
+        return FULL_TIME_SALARY;
     }
 }
 
 class PartTimeGameTester extends GameTester {
-    public int hoursWorked;
+    private int hoursWorked;
+    private static final int HOURLY_RATE = 20;
 
-    public PartTimeGameTester(String name, int hoursWorked) {
+    PartTimeGameTester(final String name, final int hoursWorked) {
         super(name, false);
         this.hoursWorked = hoursWorked;
     }
 
     @Override
-    public double calculateSalary() {
-        return hoursWorked * 20;
+    public int calculateSalary() {
+        return hoursWorked * HOURLY_RATE;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(final int hoursWorked) {
+        this.hoursWorked = hoursWorked;
     }
 }

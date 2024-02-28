@@ -3,7 +3,7 @@ package exercise3;
 import java.util.Scanner;
 
 public class ProcessMortgage {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
         Mortgage[] mortgages = new Mortgage[3];
         double currentInterestRate;
