@@ -32,16 +32,18 @@ public class ProcessMortgage {
 
             // Check if mortgage amount exceeds maximum allowed
             if (mortgageAmount > MortgageConstants.MAX_MORTGAGE_AMOUNT) {
-                System.out.println("Mortgage amount exceeds maximum allowed. Setting to maximum.");
+                System.out.println(
+                "Mortgage amount exceeds maximum allowed. Setting to maximum.");
                 mortgageAmount = MortgageConstants.MAX_MORTGAGE_AMOUNT;
             }
 
             System.out.print(
-                "Enter term (1 for short term, 3 for medium term, 5 for long term): ");
+        "Enter term (1 for short term, 3 for medium term, 5 for long term): ");
             int term = scanner.nextInt();
 
             // Force any undefined term to short term
-            if (term != MortgageConstants.SHORT_TERM && term != MortgageConstants.MEDIUM_TERM
+            if (term != MortgageConstants.SHORT_TERM 
+                && term != MortgageConstants.MEDIUM_TERM
                 && term != MortgageConstants.LONG_TERM) {
                 System.out.println("Undefined term. Setting to short term.");
                 term = MortgageConstants.SHORT_TERM;
