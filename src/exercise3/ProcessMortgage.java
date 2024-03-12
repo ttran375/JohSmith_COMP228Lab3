@@ -42,7 +42,7 @@ public class ProcessMortgage {
             int term = scanner.nextInt();
 
             // Force any undefined term to short term
-            if (term != MortgageConstants.SHORT_TERM 
+            if (term != MortgageConstants.SHORT_TERM
                 && term != MortgageConstants.MEDIUM_TERM
                 && term != MortgageConstants.LONG_TERM) {
                 System.out.println("Undefined term. Setting to short term.");
